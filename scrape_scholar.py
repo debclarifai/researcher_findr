@@ -8,7 +8,6 @@ def run_scrape(list_of_keywords):
         output, error = process.communicate()   
         authors = parse_output(keyword, output)
         authors_to_search[keyword] = authors
-    print(authors_to_search)
     return authors_to_search
 
 def parse_output(keyword, output):
@@ -35,6 +34,6 @@ def parse_output(keyword, output):
 def main():
     user_input = raw_input("Input keywords:(delimited by ;) ")
     list_of_keywords = user_input.split(";")
-    run_scrape(list_of_keywords)
+    return run_scrape(list_of_keywords)
 
 main()

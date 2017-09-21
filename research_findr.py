@@ -1,6 +1,7 @@
 from selenium import webdriver
 import argparse
 import pandas as pd
+from scrape_scholar import main 
 
 #selenium start guide : http://selenium-python.readthedocs.io/getting-started.html
 #download chrome webdriver from https://sites.google.com/a/chromium.org/chromedriver/downloads
@@ -13,24 +14,23 @@ def search_results(first_name, last_name, search_query, display=None):
     driver.get(base_url)
   return base_url
 
-def main(dict):
-  #input is {key: [A-first, A-last], [B-first, B-last], ...}
-  print 'hi'
   
 
 if __name__ == '__main__':
-  parser = argparse.ArgumentParser()
+  #parser = argparse.ArgumentParser()
 
-  dict = {'machine learning': ['John,Doe', 'Bob,Smith']}
+  #dict = {'machine learning': ['John,Doe', 'Bob,Smith']}
   #input is {key: [A-first, A-last], [B-first, B-last], ...}
+  dict = main()
+  print 'hi'
 
   csv_dict = {'name':[], 'url':[], 'keyword':[]}
 
   for key in dict:
     for i in range(len(dict[key])):
       name = dict[key][i].split(',')
-      csv_dict['url'].append(search_results(name[0], name[1], key))
-      csv_dict['name'].append( [name[0], name[1]])
+      csv_dict['url'].append(search_results(name[1], name[0], key))
+      csv_dict['name'].append( [name[1], name[0]])
       csv_dict['keyword'].append(key)
 
   pd.DataFrame(csv_dict).to_csv('tmp.csv', index=False) 

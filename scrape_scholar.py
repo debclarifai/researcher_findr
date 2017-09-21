@@ -3,7 +3,7 @@ import subprocess
 def run_scrape(list_of_keywords):
     authors_to_search = {}
     for keyword in list_of_keywords:
-        bashCommand = "python scholar.py -A " + keyword + " -c 10 --citation=en"
+        bashCommand = "python scholar.py -A " + keyword + " -c 1 --citation=en"
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()   
         authors = parse_output(keyword, output)

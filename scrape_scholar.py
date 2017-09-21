@@ -36,4 +36,3 @@ def scrape():
     list_of_keywords = user_input.split(";")
     return run_scrape(list_of_keywords)
 
-scrape()

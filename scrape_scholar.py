@@ -31,9 +31,9 @@ def parse_output(keyword, output):
             authors.append(author)
     return authors
 
-def main():
+def scrape():
     user_input = raw_input("Input keywords:(delimited by ;) ")
     list_of_keywords = user_input.split(";")
     return run_scrape(list_of_keywords)
 
-main()
+scrape()

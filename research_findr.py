@@ -21,15 +21,16 @@ def main(dict):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
 
-  dict = {'machine learning': [['John', 'Doe'], ['Bob', 'Smith']]}
+  dict = {'machine learning': ['John,Doe', 'Bob,Smith']}
   #input is {key: [A-first, A-last], [B-first, B-last], ...}
 
   csv_dict = {'name':[], 'url':[], 'keyword':[]}
 
   for key in dict:
     for i in range(len(dict[key])):
-      csv_dict['url'].append(search_results(dict[key][i][0], dict[key][i][1], key))
-      csv_dict['name'].append( [dict[key][i][0], dict[key][i][1]])
+      name = dict[key][i].split(',')
+      csv_dict['url'].append(search_results(name[0], name[1], key))
+      csv_dict['name'].append( [name[0], name[1]])
       csv_dict['keyword'].append(key)
 
   pd.DataFrame(csv_dict).to_csv('tmp.csv', index=False) 
